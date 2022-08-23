@@ -9,19 +9,22 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/api/v1/post")
+@RequestMapping("/api/v1/posts")
 public class PostController {
 
     private final PostService postService;
 
-    @PostMapping("/")
+    @PostMapping("")
     @ApiOperation("글을 생성합니다.")
-    public void createPost(PostCreateRequest request) {
+    public void createPost(@Valid @RequestBody PostCreateRequest request) {
         postService.createPost(request);
     }
 
@@ -31,7 +34,7 @@ public class PostController {
         return postService.getPostById(postId);
     }
 
-    @GetMapping("/")
+    @GetMapping("")
     @ApiOperation("글목록을 조회합니다.")
     public PostListResponse getAllPosts() {
         return postService.getAllPosts();

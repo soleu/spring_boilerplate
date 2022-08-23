@@ -2,6 +2,7 @@ package com.spring_boilerplate.demo.post;
 
 
 import com.spring_boilerplate.demo.post.dto.request.PostCreateRequest;
+import com.spring_boilerplate.demo.post.dto.response.PostListResponse;
 import com.spring_boilerplate.demo.post.dto.response.PostResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
@@ -29,4 +30,11 @@ public class PostController {
     public PostResponse getPostById(@PathVariable Long postId) {
         return postService.getPostById(postId);
     }
+
+    @GetMapping("/")
+    @ApiOperation("글목록을 조회합니다.")
+    public PostListResponse getAllPosts() {
+        return postService.getAllPosts();
+    }
+
 }

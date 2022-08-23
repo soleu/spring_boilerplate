@@ -1,6 +1,8 @@
 package com.spring_boilerplate.demo.post;
 
+import lombok.AccessLevel;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,6 +12,7 @@ import javax.persistence.Id;
 
 @Entity
 @Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,12 +24,13 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
-    private Post( final String title, final String content) {
+    private Post(final String title, final String content) {
         this.title = title;
         this.content = content;
     }
 
-    public static Post newInstance(String title,String content) {
-    return new Post( title, content);
+    public static Post newInstance(String title, String content) {
+        return new Post(title, content);
     }
 }
+

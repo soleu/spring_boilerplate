@@ -11,7 +11,7 @@ public class PostService {
 
     public final PostResponse getPostById(final Long postId) {
         final Post post = postRepository.findById(postId)
-                .orElseThrow();
+                .orElseThrow(NotExistsPostException::new);
         return PostResponse.of(post);
     }
 }

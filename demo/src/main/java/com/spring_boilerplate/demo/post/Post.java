@@ -20,4 +20,13 @@ public class Post {
 
     @Column(nullable = false)
     private String content;
+
+    private Post( final String title, final String content) {
+        this.title = title;
+        this.content = content;
+    }
+
+    public static Post newInstance(String title,String content) {
+    return new Post( title, content);
+    }
 }

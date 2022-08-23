@@ -10,9 +10,9 @@ import lombok.ToString;
 @ToString
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PostResponse {
-    private final Long postId;
-    private final String title;
-    private final String content;
+    private Long postId;
+    private String title;
+    private String content;
 
     public static PostResponse of(Post post) {
         return new PostResponse(post.getId(), post.getTitle(), post.getContent());

@@ -7,6 +7,7 @@ import com.spring_boilerplate.demo.post.dto.response.PostListResponse;
 import com.spring_boilerplate.demo.post.dto.response.PostResponse;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,4 +51,10 @@ public class PostController {
         postService.updatePost(postId, request);
     }
 
+    @DeleteMapping("/{postId}")
+    @ApiOperation("글을 삭제합니다.")
+    public void deletePost(
+            @PathVariable Long postId) {
+        postService.deletePost(postId);
+    }
 }

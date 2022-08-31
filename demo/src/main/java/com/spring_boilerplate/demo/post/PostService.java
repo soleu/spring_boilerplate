@@ -47,5 +47,10 @@ public class PostService {
         post.updateContent(request.getContent());
     }
 
+    public final void deletePost(Long postId) {
+        final Post post = postRepository.findById(postId)
+                .orElseThrow(NotExistsPostException::new);
 
+        postRepository.deleteById(postId);
+    }
 }

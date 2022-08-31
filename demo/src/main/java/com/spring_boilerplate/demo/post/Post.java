@@ -29,6 +29,10 @@ public class Post {
         this.content = content;
     }
 
+    public final void updateContent(final String content) {
+        this.content = content;
+    }
+
     public static Post newInstance(String title, String content) {
         return new Post(title, content);
     }

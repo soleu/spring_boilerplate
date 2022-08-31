@@ -2,6 +2,7 @@ package com.spring_boilerplate.demo.post;
 
 
 import com.spring_boilerplate.demo.post.dto.request.PostCreateRequest;
+import com.spring_boilerplate.demo.post.dto.request.PostUpdateRequest;
 import com.spring_boilerplate.demo.post.dto.response.PostListResponse;
 import com.spring_boilerplate.demo.post.dto.response.PostResponse;
 import io.swagger.annotations.ApiOperation;
@@ -9,6 +10,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,9 +37,17 @@ public class PostController {
     }
 
     @GetMapping("")
-    @ApiOperation("글목록을 조회합니다.")
+    @ApiOperation("글 목록을 조회합니다.")
     public PostListResponse getAllPosts() {
         return postService.getAllPosts();
+    }
+
+    @PutMapping("/{postId}")
+    @ApiOperation("글 내용을 수정합니다.")
+    public void updatePost(
+            @PathVariable Long postId,
+            @Valid @RequestBody PostUpdateRequest request) {
+        postService.updatePost(postId, request);
     }
 
 }

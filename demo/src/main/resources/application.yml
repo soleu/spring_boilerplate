@@ -10,4 +10,3 @@ spring:
         code: 401
         msg: '글이 존재하지 않습니다. '
         type : com.spring_boilerplate.demo.post.NotExistsPostException
-

@@ -11,16 +11,14 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static com.spring_boilerplate.demo.post.Post.newInstance;
-
 @Service
-@RequiredArgsConstructor
 @Transactional
+@RequiredArgsConstructor
 public class PostService {
     private final PostRepository postRepository;
 
-    public final void createPost(PostCreateRequest request) {
-        Post post = newInstance(request.getTitle(), request.getContent());
+    public void createPost(PostCreateRequest request) {
+        Post post = Post.newInstance(request.getTitle(), request.getContent());
         postRepository.save(post);
     }
 
@@ -40,14 +38,14 @@ public class PostService {
                 .collect(Collectors.toList()));
     }
 
-    public final void updatePost(Long postId, final PostUpdateRequest request) {
+    public void updatePost(Long postId, final PostUpdateRequest request) {
         final Post post = postRepository.findById(postId)
                 .orElseThrow(NotExistsPostException::new);
 
         post.updateContent(request.getContent());
     }
 
-    public final void deletePost(Long postId) {
+    public void deletePost(Long postId) {
         final Post post = postRepository.findById(postId)
                 .orElseThrow(NotExistsPostException::new);
 

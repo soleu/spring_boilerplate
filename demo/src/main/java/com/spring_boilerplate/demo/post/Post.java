@@ -15,7 +15,7 @@ import javax.persistence.Id;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class Post {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false)
@@ -33,7 +33,7 @@ public class Post {
         this.content = content;
     }
 
-    public static Post newInstance(String title, String content) {
+    public static Post newInstance(final String title, final String content) {
         return new Post(title, content);
     }
 }
